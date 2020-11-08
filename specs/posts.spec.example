@@ -11,6 +11,7 @@ describe('Posts service', () => {
     expect(status).toBe(200);
     expect(data).toHaveLength(100);
   });
+  
   test('postService.getPost returns one post', async () => {
     const { status, data } = await postService.getPost(1);
     expect(status).toBe(200);
