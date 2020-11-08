@@ -1,0 +1,23 @@
+import postService from '../src/services/posts';
+describe('Posts service', () => {
+  test('it loads without error', () => {
+    expect(postService).toBeDefined();
+    expect(postService).toHaveProperty('getList');
+    expect(postService).toHaveProperty('getPost');
+  });
+
+  test('postService.getList returns list of posts', async () => {
+    const { status, data } = await postService.getList();
+    expect(status).toBe(200);
+    expect(data).toHaveLength(100);
+  });
+  test('postService.getPost returns one post', async () => {
+    const { status, data } = await postService.getPost(1);
+    expect(status).toBe(200);
+    expect(data).toBeTruthy();
+    expect(data.id).toBe(1);
+    expect(data.userId).toBeDefined();
+    expect(data.title).toBeDefined();
+    expect(data.body).toBeDefined();
+  });
+});
